@@ -1395,9 +1395,10 @@ func (b *BatchPoster) maybePostSequencerBatch(ctx context.Context) (bool, error)
 					log.Error("Error while attempting to post batch and on chain fallback is disabled", "error", err)
 					return false, err
 				}
-				log.Error("Error when trying to store data with dapWriter", "type", writer.Type())
+				log.Error("Error when trying to store data with dapWriter", "error", err)
 				continue
 			}
+			log.Info("Wrote data to dapWriter", "type", writer.Type())
 			// if we succesffuly posted a batch with a dapWriter, we move on and ignore the rest
 			break
 		}
